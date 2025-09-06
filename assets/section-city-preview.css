@@ -1,5 +1,5 @@
 .city-preview {
-  padding: 5rem 0;
+  padding: var(--section-padding-top) 0 var(--section-padding-bottom);
 }
 
 .city-preview__wrapper {
@@ -7,34 +7,30 @@
 }
 
 .city-preview__heading {
-  font-size: 3rem;
   margin-bottom: 1.5rem;
-  color: var(--color-primary);
 }
 
 .city-preview__description {
-  font-size: 1.8rem;
   margin-bottom: 3rem;
-  color: #666;
+  font-size: 1.8rem;
 }
 
 .city-preview__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
   margin-top: 3rem;
 }
 
 .city-preview__item {
-  background: #fff;
+  background: rgb(var(--color-background));
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(var(--color-shadow), 0.1);
   transition: transform 0.3s ease;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .city-preview__item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-0.5rem);
+  box-shadow: 0 8px 25px rgba(var(--color-shadow), 0.15);
 }
 
 .city-preview__image {
@@ -55,40 +51,22 @@
 }
 
 .city-preview__title {
-  font-size: 2rem;
   margin-bottom: 1rem;
-  color: var(--color-primary);
+  color: rgb(var(--color-foreground));
 }
 
 .city-preview__price {
-  font-size: 1.6rem;
-  font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #e74c3c;
+  color: rgb(var(--color-foreground));
+  font-weight: bold;
 }
 
 .city-preview__button {
-  background: var(--color-primary);
-  color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-.city-preview__button:hover {
-  background: #333;
-  color: white;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 749px) {
-  .city-preview__grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .city-preview__heading {
-    font-size: 2.5rem;
+  .city-preview__description {
+    font-size: 1.6rem;
   }
 }
