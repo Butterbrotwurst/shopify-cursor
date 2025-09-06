@@ -1,0 +1,123 @@
+{{ 'section-city-preview.css' | asset_url | stylesheet_tag }}
+
+<div class="city-preview">
+  <div class="page-width">
+    <div class="city-preview__wrapper">
+      {% if section.settings.heading != blank %}
+        <h2 class="city-preview__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <div class="city-preview__description">{{ section.settings.description }}</div>
+      {% endif %}
+
+      <div class="city-preview__grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'city_item' %}
+              <div class="city-preview__item" {{ block.shopify_attributes }}>
+                {% if block.settings.image != blank %}
+                  <div class="city-preview__image">
+                    <img 
+                      src="{{ block.settings.image | image_url: width: 400 }}"
+                      alt="{{ block.settings.image.alt | default: block.settings.city_name }}"
+                      loading="lazy"
+                      width="400"
+                      height="300"
+                    >
+                  </div>
+                {% endif %}
+                
+                <div class="city-preview__content">
+                  {% if block.settings.city_name != blank %}
+                    <h3 class="city-preview__title">{{ block.settings.city_name }}</h3>
+                  {% endif %}
+                  
+                  {% if block.settings.price != blank %}
+                    <div class="city-preview__price">{{ block.settings.price }}</div>
+                  {% endif %}
+                  
+                  {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                    <a href="{{ block.settings.button_link }}" class="city-preview__button button">
+                      {{ block.settings.button_label }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "City Preview",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Eigene Stadt",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Eigene 3D Karte erstellen!</p>",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "city_item",
+      "name": "City Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "city_name",
+          "default": "Custom City",
+          "label": "City Name"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "default": "€0,00",
+          "label": "Price"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Customize",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "City Preview",
+      "blocks": [
+        {
+          "type": "city_item"
+        },
+        {
+          "type": "city_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,122 +1,137 @@
-# Cityxz Shopify Theme Development
+# 🏙️ Cityxz Shop - Shopify Theme
 
-## 🚀 Schnellstart
+Ein individuelles Shopify Theme für 3D-Stadtmodelle und maßgeschneiderte Karten.
 
-### Voraussetzungen
-- Node.js v23.11.0 ✅
-- npm v10.9.2 ✅  
-- Git v2.49.0 ✅
-- Shopify CLI v3.77.1 ✅
+## 🚀 GitHub Integration Setup (Empfohlen)
 
-### Store Information
-- **Store**: morph-official.myshopify.com
-- **Workspace**: `/Users/vahidenayati/cityxzshop`
+### **Schritt 1: Repository auf GitHub veröffentlichen**
 
-## 📋 Wichtige Befehle
-
-### Lokale Entwicklung (CLI-Auth nicht verfügbar)
 ```bash
-# Theme manuell herunterladen: Online Store → Themes → Actions → Download
-# ZIP in diesem Ordner entpacken
-
-# Lokaler Entwicklungsserver mit Live-Reload
-./dev-helper.sh start
-# oder: npm run dev
-
-# Theme-ZIP für Upload erstellen  
-./dev-helper.sh zip
-# oder: npm run zip
-
-# Theme-Struktur prüfen
-./dev-helper.sh check
+# Falls noch nicht gemacht, Repository mit GitHub verbinden:
+git add .
+git commit -m "Initial Shopify theme setup"
+git branch -M main
+git remote add origin https://github.com/DEIN_USERNAME/cityxzshop.git
+git push -u origin main
 ```
 
-### Shopify CLI (falls Authentication funktioniert)
-```bash
-# Theme-Liste anzeigen
-shopify theme list --store morph-official.myshopify.com
+### **Schritt 2: GitHub Integration in Shopify aktivieren**
 
-# Entwicklungsserver starten (Hot-Reload)
-./dev-helper.sh sync
-# oder: shopify theme dev --store morph-official.myshopify.com
-
-# Theme als unveröffentlicht hochladen
-shopify theme push --unpublished --store morph-official.myshopify.com
-```
-
-## 🛠 Theme-Entwicklung
-
-### Sections & App Blocks erstellen
-- **Sections**: `sections/city-preview.liquid`
-- **Snippets**: `snippets/custom-functions.liquid`
-- **Templates**: `templates/page.city-customizer.liquid`
-
-### Lokale Struktur
-```
-├── assets/          # CSS, JS, Images
-├── config/          # Theme settings
-├── layout/          # Theme layouts  
-├── locales/         # Translations
-├── sections/        # Theme sections
-├── snippets/        # Reusable code
-├── templates/       # Page templates
-└── README.md
-```
-
-## 🐛 Troubleshooting
-
-### Authentication Fehler
-**Problem**: "You are not authorized to use the CLI"
-**Lösung**: 
-1. Logge dich direkt im Shopify Admin ein: https://morph-official.myshopify.com/admin
-2. Stelle sicher, dass du Store Owner oder Staff bist (nicht nur Partner Staff)
-3. Versuche CLI erneut
-
-### Port-Konflikt beim Dev Server
-**Problem**: Port bereits belegt
-**Lösung**: 
-```bash
-shopify theme dev --port 3001 --store morph-official.myshopify.com
-```
-
-### 2FA/MFA Probleme
-**Problem**: Zwei-Faktor-Authentifizierung blockiert CLI
-**Lösung**: Verwende App-spezifische Passwörter oder temporär 2FA deaktivieren
-
-### Missing Permissions
-**Problem**: Fehlende Theme-Berechtigungen
-**Lösung**: Store Owner muss dir "Manage themes" Berechtigung geben
-
-## 📦 Deployment Workflow
-
-1. **Lokale Änderungen testen**:
-   ```bash
-   shopify theme dev
+1. **Gehe zu deinem Shopify Admin:**
+   ```
+   https://morph-official.myshopify.com/admin/themes
    ```
 
-2. **Als unveröffentlichtes Theme hochladen**:
-   ```bash
-   shopify theme push --unpublished
-   ```
+2. **Theme hinzufügen:**
+   - Klicke auf "**Add theme**"
+   - Wähle "**Connect from GitHub**"
 
-3. **Optional: Als Live-Theme publizieren**:
-   ```bash
-   shopify theme publish --theme-id [THEME_ID]
-   ```
+3. **Repository verbinden:**
+   - Autorisiere GitHub wenn nötig
+   - Wähle das Repository: `cityxzshop`
+   - Branch: `main`
+   - Bestätige die Verbindung
 
-## 🎯 Custom City Features
+4. **Auto-Deployment aktiviert:**
+   - ✅ Jeder Git-Commit wird automatisch deployed
+   - ✅ Live-Preview verfügbar
+   - ✅ Automatische Backups
 
-### Geplante Sections:
-- [ ] City Preview Section
-- [ ] 3D Model Viewer
-- [ ] Customization Options
-- [ ] Product Configurator
+### **Schritt 3: Lokale Entwicklung**
 
-### App Blocks:
-- [ ] Interactive City Map
-- [ ] Material Selector  
-- [ ] Price Calculator
-- [ ] Order Summary
+```bash
+# Änderungen machen
+# Dateien bearbeiten in sections/, templates/, etc.
+
+# Commit und Push für Auto-Deployment
+git add .
+git commit -m "Update city preview section"
+git push origin main
+
+# Änderungen sind sofort im Shopify Admin sichtbar!
+```
+
+## 📁 Theme-Struktur
+
+```
+cityxzshop/
+├── assets/           # CSS, JS, Bilder
+├── config/          # Theme-Einstellungen
+├── layout/          # Haupt-Layout (theme.liquid)
+├── locales/         # Übersetzungen
+├── sections/        # Wiederverwendbare Abschnitte
+├── snippets/        # Kleine Code-Fragmente
+├── templates/       # Seiten-Templates
+└── templates/customers/  # Kunden-Account Seiten
+```
+
+## 🎨 Custom Features
+
+### **City Preview Section**
+- Datei: `sections/city-preview.liquid`
+- Verwendung: Kann auf jeder Seite im Theme Editor hinzugefügt werden
+- Features: 3D-Stadtvorschau, anpassbare Preise, Call-to-Action Buttons
+
+### **Theme Settings**
+- Logo-Upload
+- Farbanpassungen
+- Typography-Einstellungen
+
+## 🛠️ Entwicklung
+
+### **Neue Section erstellen:**
+```bash
+touch sections/deine-neue-section.liquid
+touch assets/section-deine-neue-section.css
+```
+
+### **Section in Template verwenden:**
+```liquid
+<!-- In templates/page.liquid oder templates/index.liquid -->
+{% section 'deine-neue-section' %}
+```
+
+### **Live-Reload (ohne CLI):**
+- GitHub Integration bietet automatisches Deployment
+- Änderungen sichtbar nach Git-Push
+- Preview-URL im Shopify Admin
+
+## 🚀 Deployment
+
+### **Unveröffentlichtes Theme (Testing):**
+1. Theme ist automatisch via GitHub verbunden
+2. Vorschau im Shopify Admin verfügbar
+3. Testen ohne Live-Shop zu beeinflussen
+
+### **Live schalten:**
+1. Im Shopify Admin zu Themes gehen
+2. Bei deinem GitHub-Theme auf "**Actions**" klicken
+3. "**Publish**" wählen
+
+## 🔧 Troubleshooting
+
+### **GitHub Integration funktioniert nicht:**
+- Repository muss öffentlich sein oder GitHub-App autorisiert
+- Branch-Name muss korrekt sein (main/master)
+- Shopify-Account muss Store-Owner oder entsprechende Rechte haben
+
+### **Theme-Validierung:**
+```bash
+# Shopify CLI Theme Check (falls CLI verfügbar)
+shopify theme check
+```
+
+### **CSS/JS nicht geladen:**
+- Prüfe asset URLs in Liquid files
+- Stelle sicher, dass Dateien in `/assets` liegen
+- Cache leeren im Browser
+
+## 📞 Support
+
+- **Theme-Editor:** Verfügbar im Shopify Admin nach GitHub-Integration
+- **Preview:** Automatisch verfügbar für jedes GitHub-Theme
+- **Backups:** Automatisch via GitHub-Versionierung
 
 ---
-*Generated with Shopify CLI v3.77.1*
+
+**🎉 Vorteil:** Mit GitHub Integration musst du nie manuell Theme-Dateien hochladen!

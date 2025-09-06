@@ -1,0 +1,51 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Cityxz Shop Theme",
+    "theme_author": "Morph Official",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://github.com/",
+    "theme_support_url": "https://github.com/"
+  },
+  {
+    "name": "General",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "min": 50,
+        "max": 500,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 250
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#121212"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary color",
+        "default": "#ffffff"
+      }
+    ]
+  }
+]

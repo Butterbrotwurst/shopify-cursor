@@ -1,0 +1,44 @@
+/* Base styles for the theme */
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  text-decoration: none;
+  border: 0.1rem solid transparent;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.4rem;
+  text-align: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.button--primary {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+
+.page-width {
+  max-width: 120rem;
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 750px) {
+  .page-width {
+    padding: 0 5rem;
+  }
+}
